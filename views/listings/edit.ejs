@@ -1,0 +1,67 @@
+<% layout("layouts/boilerplate") %>
+<body>
+    <div class="row mt-3">
+        <div class="col-8 offset-2">
+            <br>
+            <h3>edit your listing</h3>
+            <form method="post" action="/listings/<%= listing._id %>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="listing[title]" value="<%= listing.title %>" type="text" class="form-control" required>
+                    <div class="invalid-feedback">Please enter a title for listing.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" type="text" class="form-control" required><%=  listing.description %></textarea>
+                    <div class="invalid-feedback">Please enter a short description.</div>
+                </div>
+                <div class="mb-3">
+                    Original Listing Image <br>
+                    <img src="<%= originalImageUrl %>">
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload New Image</label>
+                    <input name="listing[image]" type="file" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <%= listing.category %>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" data-value="trending">trending</a></li>
+                            <li><a class="dropdown-item" data-value="rooms">rooms</a></li>
+                            <li><a class="dropdown-item" data-value="iconic cities">iconic cities</a></li>
+                            <li><a class="dropdown-item" data-value="mountains">mountains</a></li>
+                            <li><a class="dropdown-item" data-value="castles">castles</a></li>
+                            <li><a class="dropdown-item" data-value="amazing pools">pools</a></li>
+                            <li><a class="dropdown-item" data-value="camping">camping</a></li>
+                            <li><a class="dropdown-item" data-value="farms">farms</a></li>
+                            <li><a class="dropdown-item" data-value="arctic">arctic</a></li>
+                        </ul>
+                    </div>
+
+                    <input type="hidden" name="listing[category]" id="categoryInput" value="<%= listing.category %>">
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-4">
+                        <label for="price" class="form-label">Price</label>
+                        <input name="listing[price]" value="<%= listing.price %>" type="number" class="form-control" min="0" required>
+                        <div class="invalid-feedback">Price should be valid.</div>
+                    </div>
+                    <div class="mb-3 col-md-8">
+                        <label for="country" class="form-label">Country</label>
+                        <input name="listing[country]" value="<%= listing.country %>" type="text" class="form-control" required>
+                        <div class="invalid-feedback">Please enter the country name.</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="location" class="form-label">Location</label>
+                    <input name="listing[location]" value="<%= listing.location %>" type="text" class="form-control" required>
+                    <div class="invalid-feedback">Please provide a location.</div>
+                </div>
+                <button class="btn btn-dark edit-btn mt-3 mb-2">Edit</button>
+            </form>
+        </div>
+    </div>
+</body>

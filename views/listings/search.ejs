@@ -1,0 +1,30 @@
+<% layout("layouts/boilerplate") %>
+<body>
+    <% if(allListings.length === 0){ %>
+        <h3>No Listings Found</h3>
+    <% } %>
+
+    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-1 mt-3">
+    <% for(let listing of allListings){ %>
+        <div class="card col listing-card">
+            <div class="card-listing">
+                <img src="<%= listing.image.url || '/random.jpg' %>" class="card-img-top" alt="listing image" style="height: 20rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <b class="d-flex justify-content-center"><%= listing.title %></b>
+                        <br>
+                        &#x20a8; <%=  listing.price.toLocaleString("en-IN") %> / Night
+                        <i class="tax-info"> &nbsp; &nbsp+18% GST</i>
+                    </h5>
+                    <p><%=  listing.country %></p>
+                    <div class="d-flex justify-content-end">
+                        <a href="/listings/<%= listing._id %>" class="btn btn-primary me-3">
+                            view more
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% } %>
+    </div>
+</body>
