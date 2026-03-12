@@ -71,6 +71,10 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());   // store login related info into session
 passport.deserializeUser(User.deserializeUser());
 
+app.get("/", (req, res) => {
+    res.redirect("/listings");
+});
+
 app.use((req, res, next) => {     //middleware
     res.locals.success = req.flash("success");
     res.locals.error = req.flash("error");
